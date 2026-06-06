@@ -670,9 +670,6 @@ main#top {
 	max-width: 100%;
 	margin: 0 auto;
 }
-.cta-contact-list li {
-	opacity: 0;
-}
 .cta-contact-list.is-visible li:nth-child(1) {
 	animation: btn-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
 }

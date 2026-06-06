@@ -455,6 +455,9 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C%20quisiera%2
 
 			const list = document.querySelector('.cta-contact-list');
 			if (list) {
+				list.querySelectorAll('li').forEach((li) => {
+					(li as HTMLElement).style.opacity = '0';
+				});
 				new IntersectionObserver((entries, obs) => {
 					if (entries[0].isIntersecting) {
 						list.classList.add('is-visible');
