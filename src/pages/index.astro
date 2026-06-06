@@ -1,0 +1,514 @@
+---
+import { Font, Image, getImage } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+import fiumeLogo from '../assets/img/fiume-logo.png';
+import pdvsaLogo from '../assets/img/pdvsa-logo.png';
+import proyectoHero from '../assets/img/proyecto-hero.jpg';
+import proyecto1 from '../assets/img/proyecto-1.jpg';
+import proyecto2 from '../assets/img/proyecto-2.jpg';
+import proyecto3 from '../assets/img/proyecto-3.jpg';
+import proyecto4 from '../assets/img/proyecto-4.jpg';
+import equipoTrench from '../assets/img/equipo-trench.jpg';
+import equipoPipeEnd from '../assets/img/equipo-pipe-end.jpg';
+import equipoHiab from '../assets/img/equipo-hiab.jpg';
+import equipoPipelineRoad from '../assets/img/equipo-pipeline-road.jpg';
+import equipoCrewTruck from '../assets/img/equipo-crew-truck.jpg';
+
+const heroPreload = await getImage({
+	src: proyectoHero,
+	format: 'webp',
+	quality: 70,
+	widths: [768, 1280, 1920],
+	sizes: '100vw',
+});
+
+const CONTACT_EMAIL = 'contacto@fiume.com.ve';
+const QUOTE_BODY = encodeURIComponent(
+	'Nombre de la compañía: \nNombre y apellido: \nNúmero de contacto: \nPaís: \nCiudad: \n\nMensaje:\n'
+);
+const QUOTE_MAILTO = `mailto:${CONTACT_EMAIL}?subject=Solicitud%20de%20cotizaci%C3%B3n&body=${QUOTE_BODY}`;
+
+const services = [
+	{ n: '01', title: 'Obras civiles', desc: 'Ingeniería civil mayor y menor, urbanismo, paisajismo y obras de infraestructura ejecutadas bajo norma.' },
+	{ n: '02', title: 'Obras mecánicas', desc: 'Montaje y mantenimiento preventivo y correctivo de equipos y facilidades industriales.' },
+	{ n: '03', title: 'Obras eléctricas', desc: 'Instalaciones y mantenimiento eléctrico para plantas productivas, centros logísticos y comercios.' },
+	{ n: '04', title: 'Servicios petroleros', desc: 'Obras civiles, movimiento de tierras y mantenimiento menor para empresas del sector hidrocarburos.' },
+	{ n: '05', title: 'Alquiler de equipos', desc: 'Maquinaria pesada y vehículos disponibles con respaldo técnico y operativo en sitio.' },
+	{ n: '06', title: 'Logística nac. e internacional', desc: 'Fletes, procura e importación / exportación de maquinaria pesada con trazabilidad de extremo a extremo.' },
+];
+
+const values = [
+	{ n: '↳ 01', title: 'Confiabilidad técnica', desc: 'Cumplimos estrictamente las especificaciones del cliente y los estándares de seguridad de ingeniería en cada obra o despacho.' },
+	{ n: '↳ 02', title: 'Adaptabilidad territorial', desc: 'Cada región tiene su dinámica logística y regulatoria. Diseñamos soluciones a la medida de su contexto.' },
+	{ n: '↳ 03', title: 'Transparencia vinculante', desc: 'Comunicación clara y presupuestos precisos que construyen relaciones de confianza a largo plazo.' },
+	{ n: '↳ 04', title: 'Orientación al logro humano', desc: 'Priorizamos la seguridad de los trabajadores y el respeto a las comunidades impactadas por cada proyecto.' },
+];
+
+const stats = [
+	{ n: '14', l: 'Años de trayectoria', accent: true, id: 'stat-years' },
+	{ n: '25+', l: 'Proyectos ejecutados' },
+	{ n: '48', l: 'Equipos y vehículos' },
+];
+
+const badges = [
+	{ sq: 'RNC', title: 'Registro Nac. de Contratistas', sub: 'Vigente' },
+	{ sq: 'SHA', title: 'Seguridad, Higiene y Ambiente', sub: 'Plan SHA formalizado' },
+	{ sq: 'SNC', title: 'Solvencias al día', sub: 'IVSS · FAOV · SENIAT' },
+	{ sq: 'PDP', title: 'Portal de Proveedores PDVSA', sub: 'Proveedor registrado' },
+];
+
+const clients = [
+	'PDVSA Petróleo, S.A.',
+	'Petrocedeño, S.A.',
+	'Venangocupet, S.A.',
+	'Well Services Cavalino, C.A.',
+	'Territorio Trading Group Suc. Venezolana, S.L.',
+	'Baker Hughes Venezuela, S.C.P.A.',
+];
+
+const contracts = [
+	{ n: '4600102528', title: 'Servicio de volteo para la reparación y saneamiento ambiental del oleoducto de 30" de la Troncal 51, UTM 339172–348636, carretera vieja Cantaura-Anaco, Anzoátegui' },
+	{ n: '4600102533', title: 'Servicio de retroexcavadora para la reparación y saneamiento ambiental del oleoducto de 30" de la Troncal 51, UTM 339172–348636, carretera vieja Cantaura-Anaco, Anzoátegui' },
+	{ n: '4600103709', title: 'Servicio de brazo hidráulico de 1–3 ton para las áreas operacionales de la División Ayacucho – Fase I 2020' },
+	{ n: '4600103816', title: 'Servicio de retroexcavadora para soportar las actividades operacionales de la UP Liviano-Mediano-Dación de la División Ayacucho 2020' },
+	{ n: '4600109075', title: 'Servicio de retroexcavadora para soportar las actividades operacionales de la UP Liviano-Mediano-Dación de la División Ayacucho – Fase III 2020' },
+	{ n: '4600112379', title: 'Servicio de retroexcavadora-lowboy-escolta para soportar las operaciones de producción en el marco del plan de recuperación de diferidas a 60 días de la División Ayacucho' },
+	{ n: '4600129039', title: 'Servicio de retroexcavadora-lowboy-escolta para soportar las operaciones de producción en el marco del plan especial de recuperación de producción diferidas de la División Ayacucho' },
+	{ n: '4600129021', title: 'Servicio de cisterna para las áreas operacionales de la División Ayacucho' },
+	{ n: '4600134732', title: 'Construcción del diluenducto 8" × 28 km en las áreas operacionales de EM Venangocupet – Paquete 1 y Paquete 2' },
+	{ n: '4600135880', title: 'Servicio de mantenimiento, recuperación y adecuación de las instalaciones no industriales adscritas a la Faja Petrolífera del Orinoco Hugo Chávez – Frente 4' },
+	{ n: '4600135012', title: 'Servicio de alquiler de equipos para las actividades en la Base Logística Operacional Ayacucho de la Región Faja – Dirección Adjunta de Logística FPO HC 2023 – Frente C' },
+];
+
+const WHATSAPP_NUMBER = '584148498285';
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C%20quisiera%20solicitar%20una%20cotizaci%C3%B3n`;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image={proyectoHero} />
+		<link rel="preload" as="image" imagesrcset={heroPreload.srcSet.attribute} imagesizes="100vw" fetchpriority="high" />
+		<Font cssVariable="--font-archivo" preload />
+		<Font cssVariable="--font-space-mono" preload />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<header class="topbar" id="topbar">
+			<a href="#top" class="nav-logo-link">
+				<Image src={fiumeLogo} alt="Fiume" class="nav-logo" width={400} format="webp" loading="eager" />
+			</a>
+			<button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+			<nav class="nav-links">
+				<a class="navlink" href="#servicios">Servicios</a>
+				<a class="navlink" href="#nosotros">Nosotros</a>
+				<a class="navlink" href="#proyectos">Proyectos</a>
+				<a class="navlink" href="#cumplimiento">Cumplimiento</a>
+				<a class="btn line sm" href="#contacto">Solicitar cotización</a>
+			</nav>
+		</header>
+
+		<main id="top">
+			<!-- Hero -->
+			<section class="hero center">
+				<span class="eyebrow">Ingeniería · Servicios petroleros · Logística industrial</span>
+				<h1 class="display">Soluciones integrales para la industria petrolera.</h1>
+				<p class="sub hero-sub">
+					Soluciones de ingeniería integrales y un suministro confiable de bienes y servicios para
+					los sectores industrial, petrolero y comercial — asegurando la continuidad operativa y la
+					optimización de costos de nuestros clientes.
+				</p>
+				<div class="hero-ctas">
+					<a class="btn fill" href="#contacto">Solicitar cotización →</a>
+					<a class="btn line" href="#servicios">Conocer servicios</a>
+				</div>
+			</section>
+
+			<!-- Cinema band -->
+			<div class="cinema-band">
+				<div class="cinema">
+					<Image
+						src={proyectoHero}
+						alt=""
+						widths={[768, 1280, 1920]}
+						sizes="100vw"
+						format="webp"
+						quality={70}
+						loading="eager"
+						fetchpriority="high"
+					/>
+					<Image src={proyecto1} alt="" widths={[768, 1280, 1920]} sizes="100vw" format="webp" quality={70} loading="lazy" />
+					<Image src={proyecto2} alt="" widths={[768, 1280, 1920]} sizes="100vw" format="webp" quality={70} loading="lazy" />
+					<Image src={proyecto4} alt="" widths={[768, 1280, 1920]} sizes="100vw" format="webp" quality={70} loading="lazy" />
+				</div>
+				<span class="cap">Operaciones en campo · izaje, montaje y servicios a pozo</span>
+			</div>
+
+			<!-- Client strip -->
+			<div class="clients">
+				<span class="kicker">Clientes de referencia</span>
+				<Image src={pdvsaLogo} class="logo-pdvsa" alt="PDVSA" width={220} format="webp" loading="lazy" />
+				<ul class="client-list">
+					{clients.map((c) => <li>{c}</li>)}
+				</ul>
+			</div>
+
+			<!-- Quiénes somos -->
+			<section class="s" id="nosotros">
+				<div class="quienes-grid">
+					<div>
+						<span class="kicker">Quiénes somos</span>
+						<h2 class="h2" style="margin-top:12px;">
+							Versatilidad corporativa al servicio de la industria.
+						</h2>
+					</div>
+					<div>
+						<p class="sub">
+							Fiume cuenta con un objeto social robusto y diversificado, que abarca desde la
+							consultoría y la ingeniería civil mayor y menor, obras de urbanismo, paisajismo y
+							mantenimiento, hasta operaciones clave en la industria petrolera, fletes e importación
+							/ exportación de maquinaria pesada.
+						</p>
+						<p class="sub" style="margin-top:14px;">
+							Esa versatilidad nos permite responder con agilidad a contratos de distinta escala,
+							proyectando a la organización hacia un crecimiento sostenible y territorialmente
+							inteligente.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Servicios -->
+			<section class="s" id="servicios">
+				<div class="section-head">
+					<span class="kicker">Lo que hacemos</span>
+					<h2 class="h2" style="margin-top:12px;">Seis líneas de servicio bajo un mismo estándar.</h2>
+				</div>
+				<div class="grid g3">
+					{
+						services.map((svc) => (
+							<article class="card">
+								<div class="num">{svc.n}</div>
+								<h3 class="h3" style="margin-top:10px;">{svc.title}</h3>
+								<p class="desc">{svc.desc}</p>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- Proyectos -->
+			<section class="s" id="proyectos">
+				<div class="section-head">
+					<span class="kicker">Proyectos en campo</span>
+					<h2 class="h2" style="margin-top:12px;">Ejecución real en sitios operativos.</h2>
+				</div>
+				<div class="proj-grid">
+					<div class="proj tall h1">
+						<Image src={proyectoHero} alt="Izaje y servicios a pozo" widths={[400, 600, 900]} sizes="(max-width: 900px) 100vw, 42vw" format="webp" quality={72} loading="lazy" />
+						<div class="cap">Izaje y servicios a pozo</div>
+					</div>
+					<div class="proj h2">
+						<Image src={proyecto1} alt="Localización · equipos en sitio" widths={[400, 800]} sizes="(max-width: 560px) 100vw, 25vw" format="webp" quality={72} loading="lazy" />
+						<div class="cap">Localización · equipos en sitio</div>
+					</div>
+					<div class="proj h2">
+						<Image src={proyecto2} alt="Mantenimiento de facilidades" widths={[400, 800]} sizes="(max-width: 560px) 100vw, 25vw" format="webp" quality={72} loading="lazy" />
+						<div class="cap">Mantenimiento de facilidades</div>
+					</div>
+					<div class="proj h2">
+						<Image src={proyecto3} alt="Adecuación de vías de acceso" widths={[400, 800]} sizes="(max-width: 560px) 100vw, 25vw" format="webp" quality={72} loading="lazy" />
+						<div class="cap">Adecuación de vías de acceso</div>
+					</div>
+					<div class="proj h2">
+						<Image src={proyecto4} alt="Movilización de maquinaria pesada" widths={[400, 800]} sizes="(max-width: 560px) 100vw, 25vw" format="webp" quality={72} loading="lazy" />
+						<div class="cap">Movilización de maquinaria pesada</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Nuestra gente en campo -->
+			<section class="s" id="equipo">
+				<div class="section-head">
+					<span class="kicker">Nuestra gente en campo</span>
+					<h2 class="h2" style="margin-top:12px;">Cada obra son personas, oficio y disciplina.</h2>
+					<p class="sub" style="margin-top:14px;">
+						Cuadrillas de soldadura, mantenimiento e izaje operando junto a personal técnico de
+						PDVSA en localizaciones reales.
+					</p>
+				</div>
+				<div class="team-grid">
+					<figure class="team tall">
+						<Image src={equipoTrench} alt="Trabajador en zanja" widths={[400, 800]} sizes="(max-width: 900px) 50vw, 27vw" format="webp" quality={72} loading="lazy" />
+						<figcaption class="team-cap">Movimiento de tierra · mantenimiento</figcaption>
+					</figure>
+					<figure class="team">
+						<Image src={equipoPipeEnd} alt="Tubería de gran diámetro lista para montaje" widths={[400, 800]} sizes="(max-width: 900px) 50vw, 27vw" format="webp" quality={72} loading="lazy" />
+						<figcaption class="team-cap">Tubería lista para montaje</figcaption>
+					</figure>
+					<figure class="team tall">
+						<Image src={equipoCrewTruck} alt="Cuadrilla con esmeril en zona de soldadura" widths={[400, 800]} sizes="(max-width: 900px) 50vw, 27vw" format="webp" quality={72} loading="lazy" />
+						<figcaption class="team-cap">Preparación de junta para soldadura</figcaption>
+					</figure>
+					<figure class="team">
+						<Image src={equipoHiab} alt="Operador con camión HIAB en faena" widths={[400, 800]} sizes="(max-width: 900px) 50vw, 27vw" format="webp" quality={72} loading="lazy" />
+						<figcaption class="team-cap">Operador de grúa HIAB · izaje</figcaption>
+					</figure>
+					<figure class="team full">
+						<Image src={equipoPipelineRoad} alt="Tendido de tubería a lo largo de vía de acceso" widths={[800, 1200, 1600]} sizes="100vw" format="webp" quality={72} loading="lazy" />
+						<figcaption class="team-cap">Tendido de tubería · vía de acceso</figcaption>
+					</figure>
+				</div>
+			</section>
+
+			<!-- Contratos ejecutados -->
+			<section class="s">
+				<div class="section-head">
+					<span class="kicker">Contratos ejecutados</span>
+					<h2 class="h2" style="margin-top:12px;">Historial de contratos con PDVSA.</h2>
+				</div>
+				<ul class="contract-list">
+					{contracts.map((c) => (
+						<li class="contract-item">
+							<span class="contract-title">{c.title}</span>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			<!-- Valores -->
+			<section class="s">
+				<div class="section-head">
+					<span class="kicker">Cómo trabajamos</span>
+					<h2 class="h2" style="margin-top:12px;">
+						Cuatro valores que rigen cada obra y cada despacho.
+					</h2>
+				</div>
+				<div class="grid g4">
+					{
+						values.map((v) => (
+							<article class="card">
+								<div class="num">{v.n}</div>
+								<h3 class="h3" style="margin-top:10px;">{v.title}</h3>
+								<p class="desc">{v.desc}</p>
+							</article>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- Misión / Visión -->
+			<section class="s">
+				<div class="grid g2" style="gap:20px;">
+					<div class="mv-card">
+						<span class="kicker">Misión</span>
+						<p>
+							Impulsar el desarrollo de infraestructura, la eficiencia logística y el soporte técnico
+							especializado para los sectores industrial, petrolero y comercial, mediante soluciones
+							de ingeniería integrales y un suministro confiable de bienes y servicios.
+						</p>
+					</div>
+					<div class="mv-card">
+						<span class="kicker">Visión · horizonte 2029</span>
+						<p>
+							Consolidar a Fiume como aliado estratégico e indispensable en la cadena de valor
+							industrial y de infraestructura del país, reconocidos por la adaptabilidad operativa,
+							la agilidad logística y la rigurosidad técnica.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Stats band -->
+			<div class="stats-band" id="stats-band">
+				<div class="stats">
+					{
+						stats.map((stat) => (
+							<div class="stat">
+								<div class={`n${stat.accent ? ' accent' : ''}`} id={stat.id ?? undefined}>{stat.n}</div>
+								<div class="l">{stat.l}</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+
+			<!-- Cumplimiento -->
+			<section class="s" id="cumplimiento">
+				<div class="section-head">
+					<span class="kicker">Cumplimiento y certificaciones</span>
+					<h2 class="h2" style="margin-top:12px;">Listos para procesos de homologación.</h2>
+				</div>
+				<div class="badges">
+					{
+						badges.map((b) => (
+							<div class="badge">
+								<span class="sq">{b.sq}</span>
+								<div>
+									<div class="bt">{b.title}</div>
+									<div class="bs">{b.sub}</div>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- CTA final -->
+			<section class="cta-final" id="contacto">
+				<h2>¿Tiene un proyecto o licitación en puerta?</h2>
+				<p>
+					Envíenos los requerimientos y recibirá una propuesta formal con alcance, cronograma y
+					respaldo documental.
+				</p>
+				<p class="cta-contact-label">Contáctenos directamente</p>
+				<ul class="cta-contact-list">
+					<li>
+						<a href={QUOTE_MAILTO} class="cta-contact-btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+							{CONTACT_EMAIL}
+						</a>
+					</li>
+					<li>
+						<a href="tel:+584248577873" class="cta-contact-btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.2z"/></svg>
+							+58 424 857 7873
+						</a>
+					</li>
+					<li>
+						<a href={WHATSAPP_URL} target="_blank" rel="noopener" class="cta-wa-btn">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+							+58 414 849 8285
+						</a>
+					</li>
+				</ul>
+			</section>
+		</main>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="fgrid">
+				<div>
+					<Image src={fiumeLogo} alt="Fiume" class="footer-logo" width={320} format="webp" loading="lazy" />
+					<p style="margin-top:14px;max-width:38ch;">
+						Obras civiles, mecánicas y eléctricas · servicios petroleros · alquiler de equipos ·
+						logística nacional e internacional.
+					</p>
+					<div class="rif">RIF J-40049754-0</div>
+				</div>
+				<div>
+					<h4>Servicios</h4>
+					<a href="#servicios">Obras civiles</a>
+					<a href="#servicios">Obras mecánicas</a>
+					<a href="#servicios">Servicios petroleros</a>
+					<a href="#servicios">Logística</a>
+				</div>
+				<div>
+					<h4>Empresa</h4>
+					<a href="#nosotros">Nosotros</a>
+					<a href="#proyectos">Proyectos</a>
+					<a href="#cumplimiento">Cumplimiento</a>
+				</div>
+				<div>
+					<h4>Contacto</h4>
+					<a href={QUOTE_MAILTO}>{CONTACT_EMAIL}</a>
+					<a href="tel:+584248577873">+58 424 857 7873</a>
+					<a href={WHATSAPP_URL} target="_blank" rel="noopener">WhatsApp: +58 414 849 8285</a>
+					<p>San José de Guanipa (El Tigrito)<br/>Estado Anzoátegui, Venezuela</p>
+				</div>
+			</div>
+			<div class="fbottom">
+				<span id="footer-year">© 2026 Fiume C.A.</span>
+				<span>Todos los derechos reservados</span>
+			</div>
+		</footer>
+
+		<script>
+			const toggle = document.querySelector('.nav-toggle');
+			const topbar = document.querySelector('.topbar');
+			toggle?.addEventListener('click', () => {
+				const open = topbar?.classList.toggle('open') ?? false;
+				toggle.setAttribute('aria-expanded', String(open));
+			});
+			document.querySelectorAll('.nav-links a').forEach((link) => {
+				link.addEventListener('click', () => {
+					topbar?.classList.remove('open');
+					toggle?.setAttribute('aria-expanded', 'false');
+				});
+			});
+
+
+			const y = new Date().getFullYear();
+			if (y !== 2026) {
+				const el = document.getElementById('footer-year');
+				if (el) el.textContent = `© ${y} Fiume C.A.`;
+			}
+			const yearsEl = document.getElementById('stat-years');
+			if (yearsEl) {
+				const years = y - 2012;
+				if (years !== 14) yearsEl.textContent = String(years);
+			}
+
+			const list = document.querySelector('.cta-contact-list');
+			if (list) {
+				new IntersectionObserver((entries, obs) => {
+					if (entries[0].isIntersecting) {
+						list.classList.add('is-visible');
+						obs.disconnect();
+					}
+				}, { threshold: 0.4 }).observe(list);
+			}
+
+			function runSlot(el: HTMLElement, final: string, delay: number) {
+				const numMatch = final.match(/^(\d+)(.*)/);
+				const DURATION = 5000;
+				setTimeout(() => {
+					if (!numMatch) { el.textContent = final; return; }
+					const target = parseInt(numMatch[1]);
+					const digits = numMatch[1].length;
+					const suffix = numMatch[2] ?? '';
+					const startTime = performance.now();
+					let lastFlip = 0;
+					let lastValue = -1;
+					el.textContent = '0'.padStart(digits, '0') + suffix;
+					const tick = (ts: number) => {
+						const elapsed = ts - startTime;
+						const pct = Math.min(elapsed / DURATION, 1);
+						if (pct >= 1) { el.textContent = String(target).padStart(digits, '0') + suffix; return; }
+						const flipInterval = 55 + 620 * Math.pow(pct, 1.8);
+						if (ts - lastFlip >= flipInterval) {
+							lastFlip = ts;
+							// ease-out: fast start, slows near target
+							const eased = Math.pow(pct, 0.45);
+							const value = Math.round(target * eased);
+							if (value !== lastValue) {
+								el.textContent = String(value).padStart(digits, '0') + suffix;
+								lastValue = value;
+							}
+						}
+						requestAnimationFrame(tick);
+					};
+					requestAnimationFrame(tick);
+				}, delay);
+			}
+
+			new IntersectionObserver((entries, obs) => {
+				if (!entries[0].isIntersecting) return;
+				obs.disconnect();
+				document.querySelectorAll<HTMLElement>('#stats-band .stat .n').forEach((el, i) => {
+					const final = el.textContent ?? '';
+					const m = final.match(/^(\d+)(.*)/);
+					el.textContent = m ? '0'.padStart(m[1].length, '0') + (m[2] ?? '') : final;
+					runSlot(el, final, i * 500);
+				});
+			}, { threshold: 0.4 }).observe(document.getElementById('stats-band')!);
+
+		</script>
+
+
+	</body>
+</html>
